@@ -40,7 +40,7 @@ Examples:
 
 [vagrant@node-2 vagrant]$ nomad server members
 Name          Address        Port  Status  Leader  Protocol  Build  Datacenter  Region
-node1.global  192.168.12.250  4648  alive   true    2         0.8.6  dc1         global
+node1.global  192.168.56.10  4648  alive   true    2         0.8.6  dc1         global
 [vagrant@node-3 jobs]$ nomad node status
 ID        DC   Name   Class   Drain  Eligibility  Status
 4ed78222  dc1  node3  <none>  false  eligible     ready
