@@ -2,23 +2,23 @@
 
 - name: Create Nomad group
   group: 
-    name: {{ nomad_group }} 
+    name: "{{ nomad_group }}" 
     system: yes 
     state: present
 
 - name: Create Nomad user
   user:
-    name: {{ nomad_user }}
+    name: "{{ nomad_user }}"
     shell: /bin/false
     createhome: no
-    group: {{ nomad_group }}
+    group: "{{ nomad_group }}"
     system: yes
     state: present
 
 - name: Download Nomad
   get_url:
-    url: {{ nomad_url }}
-    dest: {{ nomad_download_dir }}/nomad{{ nomad_version }}.zip
+    url: "{{ nomad_url }}"
+    dest: "{{ nomad_download_dir }}"/nomad"{{ nomad_version }}".zip
 
 - name: Ensure unzip is installed
   yum: 
@@ -26,29 +26,29 @@
     state: installed
 
 - name: Unzip Nomad to installation directory
-  command: unzip -o {{ nomad_download_dir }}/nomad{{ nomad_version }}.zip -d {{ nomad_install_dir }}
+  command: unzip -o "{{ nomad_download_dir }}"/nomad"{{ nomad_version }}".zip -d "{{ nomad_install_dir }}"
   args:
-    creates: "{{ nomad_install_dir }}/nomad{{ nomad_version }}"
+    creates: "{{ nomad_install_dir }}"/nomad"{{ nomad_version }}"
 
 - name: Set nomad to link to installed version
   file:
-    src: "{{ nomad_install_dir }}/nomad"
-    dest: "{{ nomad_install_dir }}/nomad{{ nomad_version }}"
+    src: "{{ nomad_install_dir }}"/nomad"
+    dest: "{{ nomad_install_dir }}"/nomad"{{ nomad_version }}"
     state: link
 
 - name: Create Nomad configuration directory
   file:
-    path: {{ nomad_config_dir }}
-    owner: {{ nomad_user }}
-    group: {{ nomad_group }}
+    path: "{{ nomad_config_dir }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     mode: 0755
     state: directory
 
 - name: Create Nomad data directory
   file:
-    path: {{ nomad_data_dir }}
-    owner: {{ nomad_user }}
-    group: {{ nomad_group }}
+    path: "{{ nomad_data_dir }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     mode: 0755
     state: directory
 
@@ -69,18 +69,18 @@
 - name: Create Nomad configuration file
   template:
     src: base.hcl.j2
-    dest: {{ nomad_config_dir }}/base.hcl
-    owner: {{ nomad_user }}
-    group: {{ nomad_group }}
+    dest: "{{ nomad_config_dir }}"/base.hcl
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     mode: 0644
   notify: restart nomad
 
 - name: Create Nomad server configuration file
   template:
     src: server.hcl.j2
-    dest: {{ nomad_config_dir }}/server.hcl
-    owner: {{ nomad_user }}
-    group: {{ nomad_group }}
+    dest: "{{ nomad_config_dir }}"/server.hcl
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     mode: 0644
   notify: restart nomad
   when: nomad_server
@@ -88,15 +88,15 @@
 - name: Create Nomad client configuration file
   template:
     src: client.hcl.j2
-    dest: {{ nomad_config_dir }}/client.hcl
-    owner: {{ nomad_user }}
-    group: {{ nomad_group }}
+    dest: "{{ nomad_config_dir }}"/client.hcl
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
     mode: 0644
   notify: restart nomad
   when: nomad_client
 
 - name: Ensure Nomad service is started and enabled on boot
   service: 
-    name: {{ nomad_service_name }} 
+    name: "{{ nomad_service_name }}" 
     state: started 
     enabled: yes

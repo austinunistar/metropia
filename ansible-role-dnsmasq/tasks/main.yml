@@ -13,7 +13,7 @@
 - name: Make sure dnsmasq config does not exist before installing
   file:
     state: absent
-    path: {{ item }}
+    path: "{{ item }}"
   with_items:
     - /etc/dnsmasq.conf
     - /etc/resolv.conf.dnsmasq
