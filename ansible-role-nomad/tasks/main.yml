@@ -18,7 +18,7 @@
 - name: Download Nomad
   get_url:
     url: "{{ nomad_url }}"
-    dest: "{{ nomad_download_dir }}"/nomad"{{ nomad_version }}"
+    dest: "{{ nomad_download_dir }}"
 
 - name: Ensure unzip is installed
   yum: 
