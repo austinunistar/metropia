@@ -18,7 +18,7 @@
 - name: Download Nomad
   get_url:
     url: "{{ nomad_url }}"
-    dest: "{{ nomad_download_dir }}"
+    dest: "{{ nomad_download_dir }}/nomad{{ nomad_version }}.zip"
 
 - name: Ensure unzip is installed
   yum: 
@@ -28,11 +28,11 @@
 - name: Unzip Nomad to installation directory
   command: unzip -o "{{ nomad_download_dir }}"/nomad"{{ nomad_version }}".zip -d "{{ nomad_install_dir }}"
   args:
-    creates: "{{ nomad_install_dir }}"
+    creates: "{{ nomad_install_dir }}/nomad{{ nomad_version }}"
 
 - name: Set nomad to link to installed version
   file:
-    src: "{{ nomad_install_dir }}"
+    src: "{{ nomad_install_dir }}/nomad"
     dest: "{{ nomad_install_dir }}/nomad{{ nomad_version }}"
     state: link
 
@@ -78,7 +78,7 @@
 - name: Create Nomad server configuration file
   template:
     src: server.hcl.j2
-    dest: "{{ nomad_config_dir }}"
+    dest: {{ nomad_config_dir }}/client.hcl
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
