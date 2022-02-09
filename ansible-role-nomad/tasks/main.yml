@@ -33,7 +33,7 @@
 - name: Set nomad to link to installed version
   file:
     src: "{{ nomad_install_dir }}"
-    dest: "{{ nomad_install_dir }}"/nomad"{{ nomad_version }}"
+    dest: "{{ nomad_install_dir }}"/"nomad{{ nomad_version }}"
     state: link
 
 - name: Create Nomad configuration directory
