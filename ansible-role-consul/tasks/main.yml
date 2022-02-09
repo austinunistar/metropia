@@ -23,7 +23,7 @@
 - name: Download Consul
   get_url:
     url: "{{ consul_url }}"
-    dest: "{{ consul_download_dir }}"/consul.zip
+    dest: "{{ consul_download_dir }}"
 
 - name: Unzip Consul to installation directory
   command: unzip "{{ consul_download_dir }}"/consul.zip -d "{{ consul_install_dir }}"
