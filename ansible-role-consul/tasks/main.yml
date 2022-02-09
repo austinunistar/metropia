@@ -57,7 +57,7 @@
 - name: Create Consul configuration file
   template:
     src: consul.json.j2
-    dest: {{ consul_config_dir }}/consul.json
+    dest: "{{ consul_config_dir }}/consul.json"
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     mode: 0644
