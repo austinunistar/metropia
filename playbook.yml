@@ -8,3 +8,8 @@
     - ansible-role-consul
     - ansible-role-dnsmasq
     - ansible-role-nomad
+
+- hosts: client
+  become: yes
+  roles:
+    - ansible-role-docker
