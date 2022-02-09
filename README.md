@@ -6,17 +6,17 @@ NOTE: vagrant plugin install vagrant-vbguest
 
 vagrant up
 
-Change consul and nomad versions to latest (sep 2018)
+Change consul (January 12, 2022) and nomad (February 1, 2022) versions to latest
 
 $ grep version ansible-role-consul/defaults/main.yml 
 
-consul_version: 1.3.0
+consul_version: 1.11.2
 
-consul_webui_version: 1.3.0
+consul_webui_version: 1.11.2
 
 $ grep version ansible-role-nomad/defaults/main.yml 
 
-nomad_version: 0.8.6
+nomad_version: 1.2.5
 
 $ ansible-playbook -i ./inventory playbook.yml
 
@@ -40,7 +40,7 @@ Examples:
 
 [vagrant@node-2 vagrant]$ nomad server members
 Name          Address        Port  Status  Leader  Protocol  Build  Datacenter  Region
-node1.global  192.168.50.10  4648  alive   true    2         0.8.6  dc1         global
+node1.global  192.168.12.250  4648  alive   true    2         0.8.6  dc1         global
 [vagrant@node-3 jobs]$ nomad node status
 ID        DC   Name   Class   Drain  Eligibility  Status
 4ed78222  dc1  node3  <none>  false  eligible     ready
