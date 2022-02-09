@@ -16,23 +16,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node1" do |node1|
 	  node1.vm.hostname = "node-1.vagrant"
-    node1.vm.network "private_network", ip: "192.168.50.10"
+    node1.vm.network "private_network", ip: "192.168.56.10"
 	  node1.vm.provision "shell", inline:
-      'echo "192.168.50.10 node-1 node-1.vagrant" > /etc/hosts'
+      'echo "192.168.56.10 node-1 node-1.vagrant" > /etc/hosts'
   end
 
   config.vm.define "node2" do |node2|
     node2.vm.hostname = "node-2.vagrant"
-	  node2.vm.network "private_network", ip: "192.168.50.11"
+	  node2.vm.network "private_network", ip: "192.168.56.11"
     node2.vm.provision "shell", inline:
-      'echo "192.168.50.11 node-2 node-2.vagrant" > /etc/hosts'
+      'echo "192.168.56.11 node-2 node-2.vagrant" > /etc/hosts'
   end
 
   config.vm.define "node3" do |node3|
     node3.vm.hostname = "node-3.vagrant"
-	  node3.vm.network "private_network", ip: "192.168.50.12"
+	  node3.vm.network "private_network", ip: "192.168.56.12"
 	  node3.vm.provision "shell", inline:
-      'echo "192.168.50.12 node-3 node-3.vagrant" > /etc/hosts'
+      'echo "192.168.56.12 node-3 node-3.vagrant" > /etc/hosts'
   end
 
   # Fix new ip not showing after initialized
