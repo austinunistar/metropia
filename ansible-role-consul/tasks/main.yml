@@ -28,7 +28,7 @@
 - name: Unzip Consul to installation directory
   command: unzip "{{ consul_download_dir }}"/consul.zip -d "{{ consul_install_dir }}"
   args:
-    creates: "{{ consul_install_dir }}"/consul"
+    creates: "{{ consul_install_dir }}"
   tags: consul
 
 - name: Create Consul configuration directory
