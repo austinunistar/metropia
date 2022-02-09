@@ -69,7 +69,7 @@
 - name: Create Nomad configuration file
   template:
     src: base.hcl.j2
-    dest: "{{ nomad_config_dir }}"/base.hcl
+    dest: "{{ nomad_config_dir }}"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
@@ -78,7 +78,7 @@
 - name: Create Nomad server configuration file
   template:
     src: server.hcl.j2
-    dest: "{{ nomad_config_dir }}"/server.hcl
+    dest: "{{ nomad_config_dir }}"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
@@ -88,7 +88,7 @@
 - name: Create Nomad client configuration file
   template:
     src: client.hcl.j2
-    dest: "{{ nomad_config_dir }}"/client.hcl
+    dest: "{{ nomad_config_dir }}"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
