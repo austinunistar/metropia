@@ -17,14 +17,6 @@
     name: unzip 
     state: installed
 
-# This only works in ansible 2.2
-# - name: download consul zip
-#   unarchive: >
-#     src="{{ consul_url }}"
-#     creates="{{ consul_install_dir }}/consul"
-#     dest="{{ consul_install_dir }}"
-#     remote_src=yes
-
 - name: Download Consul
   get_url:
     url: "{{ consul_url }}"
