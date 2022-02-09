@@ -2,7 +2,7 @@
 
 - name: Create Nomad group
   group: 
-    name: "{{ nomad_group }}" 
+    name: "{{ nomad_group }}"
     system: yes 
     state: present
 
@@ -12,8 +12,8 @@
     shell: /bin/false
     createhome: no
     group: "{{ nomad_group }}"
-    system: yes
-    state: present
+    system: "yes"
+    state: "present"
 
 - name: Download Nomad
   get_url:
@@ -26,7 +26,7 @@
     state: installed
 
 - name: Unzip Nomad to installation directory
-  command: unzip -o "{{ nomad_download_dir }}"/nomad"{{ nomad_version }}".zip -d "{{ nomad_install_dir }}"
+  command: unzip -o {{ nomad_download_dir }}/nomad{{ nomad_version }}.zip -d {{ nomad_install_dir }}
   args:
     creates: "{{ nomad_install_dir }}/nomad{{ nomad_version }}"
 
@@ -69,16 +69,16 @@
 - name: Create Nomad configuration file
   template:
     src: base.hcl.j2
-    dest: "{{ nomad_config_dir }}"
+    dest: "{{ nomad_config_dir }}/base.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
   notify: restart nomad
 
 - name: Create Nomad server configuration file
-  template:
+  template: 
     src: server.hcl.j2
-    dest: "{{ nomad_config_dir }}/client.hcl"
+    dest: "{{ nomad_config_dir }}/server.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
@@ -88,7 +88,7 @@
 - name: Create Nomad client configuration file
   template:
     src: client.hcl.j2
-    dest: "{{ nomad_config_dir }}"
+    dest: "{{ nomad_config_dir }}/client.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
@@ -97,6 +97,6 @@
 
 - name: Ensure Nomad service is started and enabled on boot
   service: 
-    name: "{{ nomad_service_name }}" 
-    state: started 
+    name: "{{ nomad_service_name }}"
+    state: started
     enabled: yes

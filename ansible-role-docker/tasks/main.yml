@@ -1,6 +1,5 @@
 ---
 
-# Set up docker to use as drive for nomad
 - name: Installation methods
   block:
     - name: Install using the repository
