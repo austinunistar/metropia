@@ -5,10 +5,10 @@
 
 - name: Create Consul user
   user:
-    name: {{ consul_user }}
+    name: "{{ consul_user }}"
     shell: /bin/false
     createhome: no
-    group: {{ consul_group }}
+    group: "{{ consul_group }}"
     system: yes
     state: present
 
